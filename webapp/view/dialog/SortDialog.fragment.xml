@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+    <ViewSettingsDialog confirm="onPressSortConfirm" sortDescending="true">
+        <sortItems>
+            <ViewSettingsItem text="{i18n>titCreationDate}" key="CreatedAt" selected="true" />
+            <ViewSettingsItem text="{i18n>titPriority}" key="Priority/PriorityDesc" />
+            <ViewSettingsItem text="{i18n>titSolutionDate}" key="DueDate" />
+            <ViewSettingsItem text="{i18n>titStatus}" key="Status/StatusDesc" />
+        </sortItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

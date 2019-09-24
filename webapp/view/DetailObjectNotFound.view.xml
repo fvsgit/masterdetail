@@ -1,0 +1,4 @@
+<mvc:View controllerName="dbag.crm.btx.ssc.controller.BaseController" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<MessagePage id="page" title="{i18n>titExceptionalError}" text="{i18n>txtErrorMessage}" icon="sap-icon://error"   
+		description="{i18n>txtErrorMessageDescription}"></MessagePage>
+</mvc:View>

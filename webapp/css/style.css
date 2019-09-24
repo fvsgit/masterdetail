@@ -1,0 +1,7 @@
+.masterPage .sapFDynamicPage-Std-Phone .sapFDynamicPageHeaderWithContent {
+    padding: 0 !important;
+}
+
+.masterPage .sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 0 !important;
+}

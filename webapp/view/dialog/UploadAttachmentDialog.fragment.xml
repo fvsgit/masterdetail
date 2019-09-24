@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	<Dialog stretch="{device>/system/phone}" title="{i18n>txtUploadFile}" icon="sap-icon://upload" contentWidth="300px" xmlns:u="sap.ui.unified"
+		xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+		<content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+				adjustLabelSpan="false" columnsXL="1" columnsL="1" columnsM="1">
+				<Label text="{i18n>fldFileName}"/>
+				<u:FileUploader customData:required="true" change="onChangeFileName" valueStateText="{i18n>msgFileRequired}" sendXHR="true"
+					useMultipart="false" width="100%" id="fupAttachmentsUploader" name="AttachmentsUploader"
+					uploadUrl="/sap/opu/odata/sap/ZUHD_MAINT_SRV/Attachments" uploadComplete="onUploadComplete"/>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button id="idStartUploadButton" type="Emphasized" text="{i18n>butUpload}" press="onPressStartUpload" enabled="{detailView>/readyToSave}"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>butCancel}" press="onPressCloseFileUpload"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

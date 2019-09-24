@@ -1,0 +1,303 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCOM_CRM_CO_CP_WORKLIST_SRV" xml:lang="de" sap:schema-version="1">
+			<EntityType Name="Address" sap:content-version="1">
+				<Key><PropertyRef Name="AddressNumber"/></Key><Property Name="AddressNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Adressnummer"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AccountId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="GeschPartner" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Telephone" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Telefonnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AddressTypeId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Adressart" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="StandardAddressUsage" Type="Edm.Boolean" sap:unicode="false" sap:label="Stndverwendung" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CountryId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Land" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="City" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Ort" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Street" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Straße" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HouseNo" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Hausnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PostCode" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Postleitzahl" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="AddressCountry" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressToCountry" FromRole="FromRole_AddressToCountry"
+					ToRole="ToRole_AddressToCountry"/><NavigationProperty Name="AddressTypeRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressToAddressType"
+					FromRole="FromRole_AddressToAddressType" ToRole="ToRole_AddressToAddressType"/></EntityType>
+			<EntityType Name="ReviewCaseCategory" sap:content-version="1">
+				<Key><PropertyRef Name="ReviewCategoryId"/></Key><Property Name="ReviewCategoryId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Kategorie"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Beschreibung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Employee" sap:content-version="1">
+				<Key><PropertyRef Name="AccountId"/></Key><Property Name="AccountId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="AccountGuid" Type="Edm.Guid" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Vorname" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="LastName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Nachname" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AssignmentGroupId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TeamId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="MainAddressNumber" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Adressnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IsRm" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="HasAuthCo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HasAuthRm" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HasAuthCco" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="LeadKYCRMRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToLeadKYCRM"
+					FromRole="ToRole_ControlPlanToLeadKYCRM" ToRole="FromRole_ControlPlanToLeadKYCRM"/></EntityType>
+			<EntityType Name="FollowUpActionCancReason" sap:content-version="1">
+				<Key><PropertyRef Name="ReasonId"/></Key><Property Name="ReasonId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ReasonDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Change" sap:content-version="1">
+				<Key><PropertyRef Name="ObjectId"/><PropertyRef Name="Index"/></Key><Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="90" sap:unicode="false" sap:label="Objektwert" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Changenr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Belegnummer"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Benutzer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Udate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Datum" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Utime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Uhrzeit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tcode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Transaktion" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tabname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Tabellenname"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tabkey" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Tab.Schlüssel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Keylen" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Int.Länge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Chngind" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Änderungskz." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Feldname" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ftext" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Kurzbeschreibung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Textart" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Textart" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sprache" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TextCase" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Textänd." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Outlen" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ausg.länge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FOld" Type="Edm.String" Nullable="false" MaxLength="254" sap:unicode="false" sap:label="alter Wert" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FNew" Type="Edm.String" Nullable="false" MaxLength="254" sap:unicode="false" sap:label="neuer Wert" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Keyguid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="CDKEYGUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tabkey254" Type="Edm.String" Nullable="false" MaxLength="254" sap:unicode="false" sap:label="Tabellenschlüssel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExtKeylen" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Int.Länge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="KeyguidStr" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="KEYGUID_STR" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Version" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NumberInt" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Position" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="GuidI" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Objekt GUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EventTypeAppl" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Terminart Anw."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EventType" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Ereignis" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PartnerFctDescription" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Funktion"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Indtext" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Aktion" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Leveltxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Änderungsebene"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tabtext" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="Beschreibung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrderGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Objekt GUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Index" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Index" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Timestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Zeitstempel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Fullname" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Adr.Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FollowUpActionCategory" sap:content-version="1">
+				<Key><PropertyRef Name="FuaCategoryId"/></Key><Property Name="FuaCategoryId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Kategorie"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Beschreibung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Attachment" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="AttachmentGuid"/><PropertyRef Name="FollowUpActionGuid"/></Key><Property Name="AttachmentGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FollowUpActionGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AssignmentGroup" sap:content-version="1">
+				<Key><PropertyRef Name="AssignmentGroupId"/></Key><Property Name="AssignmentGroupId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AssignmentGroupName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Employees" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.AssignmentGroupEmployees"
+					FromRole="FromRole_AssignmentGroupEmployees" ToRole="ToRole_AssignmentGroupEmployees"/></EntityType>
+			<EntityType Name="Text" sap:content-version="1">
+				<Key><PropertyRef Name="TextId"/><PropertyRef Name="Tdspras"/></Key><Property Name="ParentGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Objekt GUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TextId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Text-ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tdspras" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sprache" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Comments" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FollowUpAction" sap:content-version="1">
+				<Key><PropertyRef Name="FuaGuid"/></Key><Property Name="ControlPlanGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FuaGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CategoryId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FuaId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="AssignmentGroupId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ControlPlanId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReviewCaseObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ComplianceFlag" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ReviewCaseGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="AdditionalInfo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="StatusId" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DueDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ProcessType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedById" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Recurrence" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CancellationReasonId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CycleStartDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CycleEndDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ResponsibleId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Comments" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="StatusRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToStatus"
+					FromRole="FromRole_FollowUpActionToStatus" ToRole="ToRole_FollowUpActionToStatus"/><NavigationProperty Name="AttachmentsRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToAttachment"
+					FromRole="FromRole_FollowUpActionToAttachment" ToRole="ToRole_FollowUpActionToAttachment"/><NavigationProperty Name="CategoryRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToCategory"
+					FromRole="FromRole_FollowUpActionToCategory" ToRole="ToRole_FollowUpActionToCategory"/><NavigationProperty Name="CancReasonRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToCancReason"
+					FromRole="FromRole_FollowUpActionToCancReason" ToRole="ToRole_FollowUpActionToCancReason"/></EntityType>
+			<EntityType Name="Country" sap:content-version="1">
+				<Key><PropertyRef Name="CountryId"/></Key><Property Name="CountryId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CountryDescription" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AddressNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Adressnummer"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AddressType" sap:content-version="1">
+				<Key><PropertyRef Name="AddressTypeId"/></Key><Property Name="AddressTypeId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Adressart"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TextShort" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Kurzbezeichnung" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TextLong" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Customer" sap:content-version="1">
+				<Key><PropertyRef Name="AccountId"/></Key><Property Name="AccountId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="GeschPartner"
+					sap:creatable="false" sap:updatable="false" sap:filterable="false"/><Property Name="ControlPlanGuid" Type="Edm.Guid" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="AccountGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="InstitutionId" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CountryOfIncorporationId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MainAddressNumber" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Adressnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DataSharingConsentId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="LegalEntityIdentifier" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="ID-Nummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BranchRel" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HeadOfficeName" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Isic" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Nace" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ParentName" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ParentCountryId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Land" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="CustomerAddressRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.CustomerToAddress"
+					FromRole="FromRole_CustomerToAddress" ToRole="ToRole_CustomerToAddress"/></EntityType>
+			<EntityType Name="DBGLegalEntity" sap:content-version="1">
+				<Key><PropertyRef Name="EntityId"/></Key><Property Name="EntityId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="GeschPartner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ParentGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Objekt GUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EntityName" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><NavigationProperty Name="DbgentityToControlPlan" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToDbgentity"
+					FromRole="ToRole_ControlPlanToDbgentity" ToRole="FromRole_ControlPlanToDbgentity"/></EntityType>
+			<EntityType Name="Status" sap:content-version="1">
+				<Key><PropertyRef Name="StatusId"/></Key><Property Name="StatusId" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ProcessType" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ControlPlan" sap:content-version="1">
+				<Key><PropertyRef Name="ControlPlanGuid"/></Key><Property Name="BoardAckReq" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="16384" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CompletionDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ControlPlanGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CreatedById" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreationDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CustomerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="DbgentityId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Beschreibung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DueDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="LeadKYCRmId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="ProcessType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Vorgangsart"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ResponsibleId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReviewCaseGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ReviewCaseObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ReviewType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="StatusId" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><NavigationProperty Name="TextRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToText" FromRole="FromRole_ControlPlanToText"
+					ToRole="ToRole_ControlPlanToText"/><NavigationProperty Name="LeadKYCRMRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToLeadKYCRM"
+					FromRole="FromRole_ControlPlanToLeadKYCRM" ToRole="ToRole_ControlPlanToLeadKYCRM"/><NavigationProperty Name="FollowUpActionRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToFollowUpAction"
+					FromRole="FromRole_ControlPlanToFollowUpAction" ToRole="ToRole_ControlPlanToFollowUpAction"/><NavigationProperty Name="CustomerRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToCustomer"
+					FromRole="FromRole_ControlPlanToCustomer" ToRole="ToRole_ControlPlanToCustomer"/><NavigationProperty Name="DbgentityRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToDbgentity"
+					FromRole="FromRole_ControlPlanToDbgentity" ToRole="ToRole_ControlPlanToDbgentity"/><NavigationProperty Name="StatusRel" Relationship="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToStatus" FromRole="FromRole_ControlPlanToStatus"
+					ToRole="ToRole_ControlPlanToStatus"/></EntityType>
+			<Association Name="AddressTypeToAddress" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressType" Multiplicity="1" Role="FromRole_AddressTypeToAddress"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" Multiplicity="*" Role="ToRole_AddressTypeToAddress"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AddressTypeToAddress"><PropertyRef Name="AddressTypeId"/></Principal>
+					<Dependent Role="ToRole_AddressTypeToAddress"><PropertyRef Name="AddressTypeId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FollowUpActionToAttachment" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" Multiplicity="1" Role="FromRole_FollowUpActionToAttachment"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Attachment" Multiplicity="*" Role="ToRole_FollowUpActionToAttachment"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_FollowUpActionToAttachment"><PropertyRef Name="FuaGuid"/></Principal>
+					<Dependent Role="ToRole_FollowUpActionToAttachment"><PropertyRef Name="FollowUpActionGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FollowUpActionToStatus" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" Multiplicity="1" Role="FromRole_FollowUpActionToStatus"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Status" Multiplicity="*" Role="ToRole_FollowUpActionToStatus"/></Association>
+			<Association Name="FollowUpActionToCategory" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" Multiplicity="1" Role="FromRole_FollowUpActionToCategory"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionCategory" Multiplicity="*" Role="ToRole_FollowUpActionToCategory"/></Association>
+			<Association Name="FollowUpActionToCancReason" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" Multiplicity="1" Role="FromRole_FollowUpActionToCancReason"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionCancReason" Multiplicity="*" Role="ToRole_FollowUpActionToCancReason"/></Association>
+			<Association Name="ControlPlanToText" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToText"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Text" Multiplicity="*" Role="ToRole_ControlPlanToText"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ControlPlanToText"><PropertyRef Name="ControlPlanGuid"/></Principal>
+					<Dependent Role="ToRole_ControlPlanToText"><PropertyRef Name="ParentGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ControlPlanToLeadKYCRM" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToLeadKYCRM"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Employee" Multiplicity="0..1" Role="ToRole_ControlPlanToLeadKYCRM"/></Association>
+			<Association Name="ControlPlanToFollowUpAction" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToFollowUpAction"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" Multiplicity="*" Role="ToRole_ControlPlanToFollowUpAction"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ControlPlanToFollowUpAction"><PropertyRef Name="ControlPlanGuid"/></Principal>
+					<Dependent Role="ToRole_ControlPlanToFollowUpAction"><PropertyRef Name="ControlPlanGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ControlPlanToCustomer" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToCustomer"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Customer" Multiplicity="0..1" Role="ToRole_ControlPlanToCustomer"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ControlPlanToCustomer"><PropertyRef Name="ControlPlanGuid"/></Principal>
+					<Dependent Role="ToRole_ControlPlanToCustomer"><PropertyRef Name="ControlPlanGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ControlPlanToDbgentity" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToDbgentity"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.DBGLegalEntity" Multiplicity="0..1" Role="ToRole_ControlPlanToDbgentity"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ControlPlanToDbgentity"><PropertyRef Name="ControlPlanGuid"/></Principal>
+					<Dependent Role="ToRole_ControlPlanToDbgentity"><PropertyRef Name="ParentGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ControlPlanToStatus" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" Multiplicity="1" Role="FromRole_ControlPlanToStatus"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Status" Multiplicity="0..1" Role="ToRole_ControlPlanToStatus"/></Association>
+			<Association Name="AddressToCountry" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" Multiplicity="1" Role="FromRole_AddressToCountry"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Country" Multiplicity="1" Role="ToRole_AddressToCountry"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AddressToCountry"><PropertyRef Name="AddressNumber"/></Principal>
+					<Dependent Role="ToRole_AddressToCountry"><PropertyRef Name="AddressNumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="AddressToAddressType" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" Multiplicity="1" Role="FromRole_AddressToAddressType"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressType" Multiplicity="0..1" Role="ToRole_AddressToAddressType"/></Association>
+			<Association Name="AddressToCustomer" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" Multiplicity="1" Role="FromRole_AddressToCustomer"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Customer" Multiplicity="*" Role="ToRole_AddressToCustomer"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AddressToCustomer"><PropertyRef Name="AddressNumber"/></Principal>
+					<Dependent Role="ToRole_AddressToCustomer"><PropertyRef Name="MainAddressNumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CustomerToAddress" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Customer" Multiplicity="1" Role="FromRole_CustomerToAddress"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" Multiplicity="0..1" Role="ToRole_CustomerToAddress"/></Association>
+			<Association Name="AssignmentGroupEmployees" sap:content-version="1"><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.AssignmentGroup" Multiplicity="1" Role="FromRole_AssignmentGroupEmployees"/><End Type="ZCOM_CRM_CO_CP_WORKLIST_SRV.Employee" Multiplicity="*" Role="ToRole_AssignmentGroupEmployees"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssignmentGroupEmployees"><PropertyRef Name="AssignmentGroupId"/></Principal>
+					<Dependent Role="ToRole_AssignmentGroupEmployees"><PropertyRef Name="AssignmentGroupId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZCOM_CRM_CO_CP_WORKLIST_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Addresses" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Address" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ReviewCaseCategories" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.ReviewCaseCategory" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="Employees" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Employee" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="FollowUpActionCancReasons" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionCancReason" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="Changes" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Change" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="FollowUpActionCategories" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionCategory" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="Attachments" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Attachment" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AssignmentGroups" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.AssignmentGroup" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="Texts" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Text" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FollowUpActions" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpAction" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="Countries" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Country" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AddressTypes" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="Customers" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Customer" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="DBGLegalEntities" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.DBGLegalEntity" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="Statuses" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.Status" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="ControlPlans" EntityType="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlan" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="FollowUpActionToStatusSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToStatus" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="FollowUpActions" Role="FromRole_FollowUpActionToStatus"/><End EntitySet="Statuses" Role="ToRole_FollowUpActionToStatus"/></AssociationSet>
+				<AssociationSet Name="LeadKYCRMRelSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToLeadKYCRM" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToLeadKYCRM"/><End EntitySet="Employees" Role="ToRole_ControlPlanToLeadKYCRM"/></AssociationSet>
+				<AssociationSet Name="FollowUpActionToAttachment_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToAttachment"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="FollowUpActions" Role="FromRole_FollowUpActionToAttachment"/><End EntitySet="Attachments" Role="ToRole_FollowUpActionToAttachment"/></AssociationSet>
+				<AssociationSet Name="FollowUpActionToCancReasonSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToCancReason"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="FollowUpActions" Role="FromRole_FollowUpActionToCancReason"/><End EntitySet="FollowUpActionCancReasons" Role="ToRole_FollowUpActionToCancReason"/></AssociationSet>
+				<AssociationSet Name="FollowUpActionToCategorySet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.FollowUpActionToCategory" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="FollowUpActions" Role="FromRole_FollowUpActionToCategory"/><End EntitySet="FollowUpActionCategories" Role="ToRole_FollowUpActionToCategory"/></AssociationSet>
+				<AssociationSet Name="AddressToCountrySet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressToCountry" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Addresses" Role="FromRole_AddressToCountry"/><End EntitySet="Countries" Role="ToRole_AddressToCountry"/></AssociationSet>
+				<AssociationSet Name="AddressToAddressType_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressToAddressType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Addresses" Role="FromRole_AddressToAddressType"/><End EntitySet="AddressTypes" Role="ToRole_AddressToAddressType"/></AssociationSet>
+				<AssociationSet Name="ControlPlanToDbgentity_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToDbgentity"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToDbgentity"/><End EntitySet="DBGLegalEntities" Role="ToRole_ControlPlanToDbgentity"/></AssociationSet>
+				<AssociationSet Name="ControlPlanToCustomer_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToCustomer" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToCustomer"/><End EntitySet="Customers" Role="ToRole_ControlPlanToCustomer"/></AssociationSet>
+				<AssociationSet Name="ControlPlanToFollowUpAction_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToFollowUpAction"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToFollowUpAction"/><End EntitySet="FollowUpActions" Role="ToRole_ControlPlanToFollowUpAction"/></AssociationSet>
+				<AssociationSet Name="AddressToCustomerSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressToCustomer" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Addresses" Role="FromRole_AddressToCustomer"/><End EntitySet="Customers" Role="ToRole_AddressToCustomer"/></AssociationSet>
+				<AssociationSet Name="AssignmentGroupEmployeesSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.AssignmentGroupEmployees" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AssignmentGroups" Role="FromRole_AssignmentGroupEmployees"/><End EntitySet="Employees" Role="ToRole_AssignmentGroupEmployees"/></AssociationSet>
+				<AssociationSet Name="AddressesAddressTypeSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.AddressTypeToAddress" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AddressTypes" Role="FromRole_AddressTypeToAddress"/><End EntitySet="Addresses" Role="ToRole_AddressTypeToAddress"/></AssociationSet>
+				<AssociationSet Name="ControlPlanToTextSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToText" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToText"/><End EntitySet="Texts" Role="ToRole_ControlPlanToText"/></AssociationSet>
+				<AssociationSet Name="ControlPlanToStatusSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.ControlPlanToStatus" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ControlPlans" Role="FromRole_ControlPlanToStatus"/><End EntitySet="Statuses" Role="ToRole_ControlPlanToStatus"/></AssociationSet>
+				<AssociationSet Name="CustomerToAddress_AssocSet" Association="ZCOM_CRM_CO_CP_WORKLIST_SRV.CustomerToAddress" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Customers" Role="FromRole_CustomerToAddress"/><End EntitySet="Addresses" Role="ToRole_CustomerToAddress"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZCOM_CRM_CO_CP_WORKLIST_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZCOM_CRM_CO_CP_WORKLIST_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="{i18n>noWatchersDialog}" multiSelect="true" title="{i18n>titWatchersDialog}" search="onSearchWatchers"
+		confirm="onConfirmWatchers" cancel="onCancelWatchers" items="{ path: '/Employees' }">
+		<StandardListItem title="{FullName}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

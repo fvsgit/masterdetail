@@ -1,0 +1,56 @@
+<mvc:View controllerName="dbag.crm.btx.ssc.controller.Create" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:semantic="sap.f.semantic" 
+	xmlns:footerbar="sap.ushell.ui.footerbar" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:u="sap.uxap" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:core="sap.ui.core" 
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:SemanticPage id="detailPage" busy="{ViewModel>/busy}" showFooter="true" 
+		xmlns:dbag="dbag.crm.btx.ssc.control" 
+		xmlns:richTextEditor="sap.ui.richtexteditor">
+		<semantic:titleHeading>
+			<Title text="{i18n>titCreateNew} {ViewModel>/Category}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<VBox>
+				<f:SimpleForm id="frmMain" editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" title="{i18n>titGeneralInformation}">
+					<Label text="{i18n>fldFirstCategory}" required="true"/>
+					<Select id="selFirstCategory" selectedKey="{ViewModel>/FirstCategoryId}" change="onChangeFirstCategory" enabled="{ViewModel>/FirstCategoryEnabled}" />
+					<Label text="{i18n>fldSecondCategory}" required="true"/>
+					<Select id="selSecondCategory" selectedKey="{ViewModel>/SecondCategoryId}" enabled="{ViewModel>/SecondCategoryEnabled}" change="onChangeSecondCategory"/>
+					<Label text="{i18n>fldThirdCategory}" required="true"/>
+					<Select id="selThirdCategory" selectedKey="{ViewModel>/ThirdCategoryId}" enabled="{ViewModel>/ThirdCategoryEnabled}" visible="{ViewModel>/ThirdCategoryVisible}"/>
+					<Label text="{i18n>titTitle}" required="true"/>
+					<Input id="inpTitle" type="Text" placeholder="{i18n>txtTitleLength}" valueStateText="{i18n>txtTitleLength}" maxLength="40" value="{path: 'ViewModel>/Title', type: 'sap.ui.model.type.String', constraints: { minLength : 1, maxLength : 40 } }"/>
+					<Label text="{i18n>titDescription}" required="true"/>
+					<TextArea value="{ViewModel>/Description}" required="true" growing="true" growingMaxLines="8" rows="8"/>
+					<Label text="{i18n>titPriority}"/>
+					<Select id="selPriority" selectedKey="{ViewModel>/PriorityId}" enabled="{ViewModel>/PriorityEnabled}">
+						<core:Item key="{PriorityId}" text="{PriorityDesc}"/>
+					</Select>
+					<Label text=""></Label>
+					<Text id="txtPrioInfo" text="{= ${ViewModel>/PriorityId} === '3' ? ${ViewModel>/highInfo} : ${ViewModel>/PriorityId} === '5' ? ${ViewModel>/mediumInfo} : ${ViewModel>/lowInfo} }"/>
+					<Label required="{= ${ViewModel>/PriorityId} === '3' ? true : false }" text="{i18n>titPriorityReason}" visible="{= ${ViewModel>/PriorityId} === '3' ? true : false }"/>
+					<TextArea id="txtPriorityReason" required="{= ${ViewModel>/PriorityId} === '3' ? true : false }" value="{ViewModel>/PriorityReason}" growing="true" growingMaxLines="2" rows="2" liveChange="onLiveChangePriorityReason" valueLiveUpdate="true" valueStateText="{i18n>msgPriorityReasonRequired}" visible="{= ${ViewModel>/PriorityId} === '3' ? true : false }"/>
+					<Label text="{i18n>titAdditionalInformation}"/>
+					<TextArea value="{ViewModel>/AdditionalInformation}" growing="true" growingMaxLines="4" rows="4"/>
+				</f:SimpleForm>
+				<f:SimpleForm id="frmAdditionalFields" visible="{CustomFields>/showAdditionalFields}" title="{i18n>titAdditionalFields}" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"  layout="ResponsiveGridLayout">
+					<!-- Content will be added during runtime -->
+				</f:SimpleForm>
+				<VBox id="vbxFiles">
+					<!-- content will be created dynamically -->
+				</VBox>
+			</VBox>
+		</semantic:content>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>butSave}" press="onPressSave"/>
+		</semantic:positiveAction>
+		<semantic:negativeAction>
+			<semantic:NegativeAction text="{i18n>butCancel}" press="onPressCancel"/>
+		</semantic:negativeAction>
+	</semantic:SemanticPage>
+</mvc:View>

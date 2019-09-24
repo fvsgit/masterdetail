@@ -1,0 +1,84 @@
+<mvc:View controllerName="dbag.crm.btx.ssc.controller.AuditTrail" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:u="sap.uxap" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:m="sap.m"
+	title="Confidential" showHeader="false" showNavButton="false">
+	<semantic:SemanticPage id="idAuditTrailPage" >
+		<semantic:titleHeading>
+			<Title text="Task {FuaId}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<layout:HorizontalLayout allowWrapping="true">
+				<layout:VerticalLayout class="sapUiLargeMarginEnd">
+					<Link tooltip="Control Plan ID" text="Control Plan ID: {ControlPlanId}" press="onPress_lnkControlPlan"/>
+					<!--<HBox><ObjectAttribute title="Control Plan ID"/><Link class="sapUiTinyMarginBegin" tooltip="KYC Review Case" text="{ControlPlanId}" press="onPress_lnkReviewCase"/></HBox>-->
+					<ObjectAttribute title="Lead KYC RM" binding="{ControlPlanRel/LeadKYCRMRel}" text="{FirstName} {LastName}"/>
+					<ObjectStatus title="Status" binding="{StatusRel}" text="{Description}" state="None"/>
+					<ObjectStatus title="Due Date" text="{ path: 'DueDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' }}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiLargeMarginEnd">
+					<ObjectAttribute title="Customer Name" binding="{ControlPlanRel/CustomerRel}" text="{Name}"/>
+					<ObjectAttribute title="DBG Entity" binding="{ControlPlanRel/DbgentityRel}" text="{EntityName}"/>
+					<ObjectAttribute title="BP Number" binding="{ControlPlanRel/CustomerRel}" text="{AccountId}"/>
+					<ObjectAttribute title="Registered Address" binding="{ControlPlanRel/CustomerRel/CustomerAddressRel}"
+						text="{CountryId}, {PostCode} {City}, {Street} {HouseNo}"/>
+				</layout:VerticalLayout>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<u:ObjectPageLayout id="idAuditTrailLayout" enableLazyLoading="false" showAnchorBarPopover="false">
+				<u:sections>
+					<u:ObjectPageSection title="Changes">
+						<u:subSections>
+							<u:ObjectPageSubSection title="" mode="Expanded">
+								<u:blocks>
+									<Table id="idAuditTrailTable" items="{Changes}">
+										<columns>
+											<Column >
+												<Text text="Field Name"/>
+											</Column>
+											<Column >
+												<Text text="New Value"/>
+											</Column>
+											<Column >
+												<Text text="Old Value"/>
+											</Column>
+											<Column >
+												<Text text="User"/>
+											</Column>
+											<Column >
+												<Text text="Timestamp"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{Indtext}"/>
+													<Text text="{FNew}"/>
+													<Text text="{FOld}"/>
+													<Text text="{Fullname}"/>
+													<Text text="{path : 'Timestamp', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy - HH:mm:ss' }}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</u:blocks>
+							</u:ObjectPageSubSection>
+						</u:subSections>
+					</u:ObjectPageSection>
+				</u:sections>
+			</u:ObjectPageLayout>
+		</semantic:content>
+		<semantic:closeAction>
+			<semantic:CloseAction visible="{= !${appView>/detailOnly}}" id="closeColumn" press="onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction id="enterFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen} &amp;&amp; !${appView>/detailOnly}}"
+				press="toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction id="exitFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen} &amp;&amp; !${appView>/detailOnly}}"
+				press="toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+	</semantic:SemanticPage>
+</mvc:View>

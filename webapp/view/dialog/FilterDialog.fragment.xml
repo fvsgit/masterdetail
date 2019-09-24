@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+    <ViewSettingsDialog confirm="onPressFilterConfirm">
+        <filterItems>
+            <!-- <ViewSettingsCustomItem text="{i18n>titCreationDate}" key="creationDate" multiSelect="false">
+                <customControl>
+                    <DateRangeSelection id="DRS2" dateValue="{path:'/dateValueDRS2'}" secondDateValue="{path:'/secondDateValueDRS2'}" minDate="{path:'/dateMinDRS2'}" maxDate="{path:'/dateMaxDRS2'}" change="handleChange" />
+                </customControl>
+            </ViewSettingsCustomItem>
+            <ViewSettingsFilterItem text="{i18n>titDelegated}" key="delegated" multiSelect="false">
+                <items>
+                    <ViewSettingsItem text="To me" key="Price___LE___100___X" />
+                    <ViewSettingsItem text="To someone else" key="Price___BT___100___1000" /> 
+                </items>
+            </ViewSettingsFilterItem> -->
+            <ViewSettingsFilterItem text="{i18n>titIncidentType}" key="incidentType" multiSelect="false">
+                <items>
+                    <ViewSettingsItem text="SAP" key="IncidentType___EQ___" />
+                    <ViewSettingsItem text="UHD" key="IncidentType___EQ___UHD_INCIDENT" /> 
+                </items>
+            </ViewSettingsFilterItem>
+            <!-- <ViewSettingsFilterItem text="{i18n>titPriority}" key="priority" multiSelect="false">
+                <items>
+                    <ViewSettingsItem text="Low" key="Price___LE___100___X" />
+                    <ViewSettingsItem text="Medium" key="Price___BT___100___1000" />
+                    <ViewSettingsItem text="High" key="Price___GT___1000___X" />
+                </items>
+            </ViewSettingsFilterItem>
+            <ViewSettingsCustomItem text="{i18n>titSolutionDate}" key="solutionDate" multiSelect="false">
+                <customControl>
+                    <DateRangeSelection id="DRS3" dateValue="{path:'/dateValueDRS2'}" secondDateValue="{path:'/secondDateValueDRS2'}" minDate="{path:'/dateMinDRS2'}" maxDate="{path:'/dateMaxDRS2'}" change="handleChange" />
+                </customControl>
+            </ViewSettingsCustomItem>
+            <ViewSettingsFilterItem text="{i18n>titStatus}" key="status" multiSelect="false" items="{/Statuses}">
+                <items>
+                    <ViewSettingsItem text="{StatusDesc}" key="{StatusId}" /> 
+                </items>
+            </ViewSettingsFilterItem> -->
+        </filterItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

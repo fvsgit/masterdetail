@@ -1,0 +1,36 @@
+{
+    "application": {
+        "id": "",
+        "title": "dbag.crm.btx.ssc.sap.crm-btx-sap_support_center",
+        "description": "SAP Support Center",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#sapcrmbtxsap_support_center-Display",
+        "navigationComponentName": "dbag.crm.btx.ssc",
+        "intentSemanticObject": "sap.crm-btx-sap_support_center",
+        "intentAction": "Display",
+        "html5ApplicationName": "sapcrmbtxsapsupportcenter",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "78353814-1fba-482e-8b08-d002eaf4364f-1511972002833"
+        ],
+        "contentPackages": [
+            "d1fa7754-e6be-435a-b199-8ce1791effbd"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "DynamicTile",
+        "title": "SAP Support Center",
+        "subtitle": "Incidents & CRs",
+        "searchKeywords": "SAP Support Center,Incidents & CRs",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "/sap/fiori/sapcrmbtxsapsupportcenter/sap/opu/odata/sap/ZUHD_MAINT_SRV/Tickets/$count",
+        "refreshInterval": 10,
+        "displayNumberUnit": ""
+    }
+}

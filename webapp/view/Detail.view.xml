@@ -1,0 +1,191 @@
+<mvc:View controllerName="dbag.crm.btx.ssc.controller.Detail" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:footerbar="sap.ushell.ui.footerbar" 
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:uxap="sap.uxap" 
+	xmlns:layout="sap.ui.layout" 
+	xmlns:core="sap.ui.core" 
+	xmlns:richTextEditor="sap.ui.richtexteditor">
+	<Page id="idAssessmentPage" showFooter="true" title="{i18n>titOverview}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<content>
+			<uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false" alwaysShowContentHeader="true" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+				<uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+						<uxap:expandedHeading>
+							<Title text="{detailView>/titlePrefix}: {ObjectId}"/>
+						</uxap:expandedHeading>
+						<uxap:snappedHeading>
+							<Title text="{detailView>/titlePrefix}: {ObjectId}"/>
+						</uxap:snappedHeading>
+						<uxap:actions>
+							<Button type="Transparent" text="Un-Watch" visible="{detailView>/watcher}" press=".onDeleteCurrentUserAsWatcher"/>
+						</uxap:actions>
+					</uxap:ObjectPageDynamicHeaderTitle>
+				</uxap:headerTitle>
+				<uxap:headerContent>
+					<layout:HorizontalLayout allowWrapping="true">
+						<layout:VerticalLayout class="sapUiLargeMarginEnd">
+							<ObjectAttribute title="{i18n>titSolutionDate}" text="{ path: 'DueDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' }}"/>
+							<ObjectAttribute title="{i18n>titCreationDate}" text="{ path: 'CreatedAt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short' }}"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiLargeMarginEnd">
+							<ObjectStatus title="{i18n>titStatus}" text="{Status/StatusDesc}"/>
+							<ObjectStatus title="{i18n>titPriority}" text="{Priority/PriorityDesc}" state="{= ${Priority/PriorityDesc} === 'High' ? 'Error' : ${Priority/PriorityDesc} === 'Medium' ? 'Warning' : 'Success' }"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiLargeMarginEnd">
+							<Link text="{i18n>titJiraIssues}" href="{detailView>/jiraUrl}" target="_blank" visible="{detailView>/jiraIssues}" emphasized="true"/>
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+				</uxap:headerContent>
+				<uxap:sections>
+					<uxap:ObjectPageSection title="{i18n>titGeneralInformation}">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<form:SimpleForm id="frmMain" title="{i18n>titGeneralInformation}" labelSpanM="3" labelSpanL="3" editable="true" emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" layout="ResponsiveGridLayout">
+										<Label text="{i18n>titTitle}" required="true"/>
+										<Input id="inpTitle" valueStateText="{i18n>msgTitleRequired}" type="Text" editable="false" required="true" value="{path: 'Title', type: 'sap.ui.model.type.String', constraints: { minLength : 1, maxLength : 40 } }"/>
+										<Label text="{i18n>titDescription}" required="true"/>
+										<TextArea value="{Description}" growing="true" required="true" growingMaxLines="8" rows="8" editable="{= ${detailView>/originalStatus} === 'E0001' &amp;&amp; ${Group} !== 'Watchlist' }"/>
+										<Label required="true" text="{i18n>titStatus}"/>
+										<Select enabled="{= ${StatusChangeable} &amp;&amp; !${detailView>/watcher}}" forceSelection="false" selectedKey="{StatusId}" items="{PossibleStatuses}">
+											<core:Item key="{StatusId}" text="{StatusDesc}"/>
+										</Select>
+										<Label required="true" text="{i18n>titPriority}"/>
+										<Select id="selPriority" enabled="{= ${detailView>/originalStatus} === 'E0005' || ${detailView>/originalStatus} === 'E0006' || ${detailView>/watcher} ? false : true }" forceSelection="false" selectedKey="{PriorityId}">
+										</Select>
+										<Label text=""></Label>
+										<Text text="{= ${PriorityId} === '3' ? ${detailView>/highInfo} : ${PriorityId} === '5' ? ${detailView>/mediumInfo} : ${detailView>/lowInfo} }"/>
+										<Label required="{= ${PriorityId} === '3' ? true : false }" text="{i18n>titPriorityReason}" visible="{= ${PriorityId} === '3' ? true : false }"/>
+										<TextArea id="txtPriorityReason" required="{= ${PriorityId} === '3' ? true : false }" editable="{= ${detailView>/originalStatus} === 'E0005' || ${detailView>/originalStatus} === 'E0006' || ${detailView>/watcher} ? false : true }" value="{PriorityReason}" growing="true" growingMaxLines="2" rows="2" liveChange="onLiveChangePriorityReason" valueLiveUpdate="true" valueStateText="{i18n>msgPriorityReasonRequired}" visible="{= ${PriorityId} === '3' ? true : false }"/>
+										<Label text="{i18n>titAdditionalInformation}"/>
+										<TextArea value="{AdditionalInformation}" editable="{= ${detailView>/originalStatus} === 'E0001' &amp;&amp; ${Group} !== 'Watchlist' }" growing="true" growingMaxLines="4" rows="4"/>
+									</form:SimpleForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>titAdditionalFields}" visible="{CustomFields>/showAdditionalFields}"> 
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<form:SimpleForm id="frmAdditionalFields" labelSpanM="3" labelSpanL="3" editable="true" emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" layout="ResponsiveGridLayout">
+										<!-- Content will be added during runtime -->
+									</form:SimpleForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>titComments}" visible="{= ${IncidentType} !== 'UHD_INCIDENT' }">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<Table rememberSelections="false" id="tabComments" items="{ path: 'Comments', parameters : { expand :'Employee'} }" mode="None" noDataText="{i18n>msgNoComments}">
+										<headerToolbar>
+											<OverflowToolbar>
+												<ToolbarSpacer/>
+												<Button icon="sap-icon://add" press="onPressAddComment" visible="{= !${detailView>/watcher} }">
+													<layoutData>
+														<OverflowToolbarLayoutData priority="NeverOverflow"/>
+													</layoutData>
+												</Button>
+											</OverflowToolbar>
+										</headerToolbar>
+										<columns>
+											<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>colCreated}" width="auto" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+											</Column>
+											<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>colUser}" width="auto" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+											</Column>
+											<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>colComment}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{ path: 'CreationTimestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short' } }"/>
+													<Text text="{Employee/FirstName} {Employee/LastName}"/>
+													<Text text="{CommentText}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>titAttachments}">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<UploadCollection id="upcAttachments" maximumFilenameLength="55" maximumFileSize="10" multiple="true" showSeparators="All" uploadEnabled="{= ${detailView>/originalStatus} === 'E0001' &amp;&amp; !${detailView>/watcher} }" uploadButtonInvisible="{= ${detailView>/originalStatus} !== 'E0001' || ${detailView>/watcher} }" uploadComplete="onUploadComplete" instantUpload="true" selectionChange="selectionChange" change="onChangeUploadColletion" fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch" beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated" items="{ path: 'Attachments', templateShareable: false }">
+										<items>
+											<UploadCollectionItem fileName="{Filename}" url="http://wwww.google.com" enableEdit="false" enableDelete="{= ${detailView>/originalStatus} === 'E0001' &amp;&amp; !${detailView>/watcher} }" visibleDelete="{= ${detailView>/originalStatus} === 'E0001' &amp;&amp; !${detailView>/watcher} }" visibleEdit="false" press="onPressDownload"></UploadCollectionItem>
+										</items>
+									</UploadCollection>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+					<uxap:ObjectPageSection title="{i18n>titWatchers}" visible="{= !${detailView>/watcher} }">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<Table id="tblWatchers" rememberSelections="false" noDataText="{i18n>msgNoWatchers}" mode="Delete" delete="onDeleteWatcher" items="{Watchers}">
+										<headerToolbar>
+											<OverflowToolbar>
+												<ToolbarSpacer/>
+												<Button icon="sap-icon://add" press=".onPressAddWatchers">
+													<layoutData>
+														<OverflowToolbarLayoutData priority="NeverOverflow"/>
+													</layoutData>
+												</Button>
+											</OverflowToolbar>
+										</headerToolbar>
+										<columns>
+											<Column width="auto" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>colUser}" width="auto" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{FullName}" binding="{Employee}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+				</uxap:sections>
+			</uxap:ObjectPageLayout>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					<Bar design="Auto">
+						<contentLeft/>
+						<contentMiddle/>
+						<contentRight>
+							<Button text="{i18n>butSave}" type="Emphasized" press="onPressSave" enabled="{= ${appModel>/hasPendingChanges} || ${appModel>/customFieldsChanged} }"/>
+							<Button text="{i18n>butUndo}" type="Default" enabled="{= ${appModel>/hasPendingChanges} || ${appModel>/customFieldsChanged} }" press="onPressUndo"/>
+						</contentRight>
+					</Bar>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

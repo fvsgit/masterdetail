@@ -1,0 +1,44 @@
+<mvc:View controllerName="dbag.crm.btx.ssc.controller.Master" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:semantic="sap.f.semantic">
+	<semantic:SemanticPage id="masterPage" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="false" class="masterPage">
+		<semantic:titleHeading>
+			<Title id="masterPageTitle" text="{masterView>/title}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<IconTabHeader select="onSelectFilter" selectedKey="{masterView>/filter}">
+				<items>
+					<IconTabFilter icon="sap-icon://headset" key=":incidents:" text="{i18n>titIncidents}"/>
+					<IconTabFilter icon="sap-icon://request" key=":changeRequests:" text="{i18n>titChangeRequests}"/>
+				</items>
+			</IconTabHeader>
+		</semantic:headerContent>
+		<semantic:content>
+			<VBox>
+				<Toolbar>
+					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%" search="onSearch"></SearchField>
+					<Button text="{= ${device>/system/phone} === true ? '' : ${masterView>/createButtonTitle} }" icon="sap-icon://add" press="onPressNew" type="Transparent"/>
+					<!-- <Button tooltip="{i18n>titSort}" icon="sap-icon://sort" press="onPressSort" type="Transparent" />
+					<Button tooltip="{i18n>titFilter}" icon="sap-icon://filter" press="onPressFilter" type="Transparent"/> -->
+				</Toolbar>
+				<List id="list" width="auto" class="sapFDynamicPageAlignContent" items="{ path: '/Tickets', sorter: [ { path: 'Group', descending: true, group: true }, { path: 'CreatedAt', descending: true } ], parameters : { expand :'Status,Priority'} }" busyIndicatorDelay="{masterView>/delay}" noDataText="{i18n>msgNoData}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" itemPress="onListItemPress">
+					<items>
+						<ObjectListItem title="{Title}" type="Active" number="{ObjectId}" numberUnit="{= ${IncidentType} === 'UHD_INCIDENT' ? 'UHD' : ${IncidentType} === 'SAP_INCIDENT' ? 'SAP' : '' }">
+							<firstStatus>
+								<ObjectStatus text="{Status/StatusDesc}"/>
+							</firstStatus>
+							<secondStatus>
+								<ObjectStatus text="{Priority/PriorityDesc}" state="{= ${Priority/PriorityDesc} === 'High' ? 'Error' : ${Priority/PriorityDesc} === 'Medium' ? 'Warning' : 'Success' }"/>
+							</secondStatus>
+							<attributes>
+								<ObjectAttribute title="{i18n>titSolutionDate}" text="{ path: 'DueDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' }}"/>
+								<ObjectAttribute title="{i18n>titCreationDate}" text="{ path: 'CreatedAt', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'short' }}"/>
+							</attributes>
+						</ObjectListItem>
+					</items>
+				</List>
+			</VBox>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

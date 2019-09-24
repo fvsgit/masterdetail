@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	<Dialog stretch="{device>/system/phone}" icon="sap-icon://comment" title="{i18n>titAddComment}" contentWidth="600px">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<TextArea valueStateText="{i18n>txtEnterComment}" id="idCaseComment" value="{detailView>/newComment}" width="100%" rows="6" growing="true"  liveChange="onLiveChangeComment"/>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button type="Emphasized" text="{i18n>butSave}" press="onPressSaveComment" enabled="{detailView>/readyToSave}"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>butCancel}" press="onPressCancelComment"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
